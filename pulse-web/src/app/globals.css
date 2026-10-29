@@ -1,0 +1,403 @@
+@import "tailwindcss";
+
+:root {
+  /* ═══════════════════════════════════════════════════════════════
+     PREMIUM LIGHT THEME — Clean & Professional
+     Soft whites, subtle shadows, vibrant accents
+     ═══════════════════════════════════════════════════════════════ */
+
+  /* Core palette — warm grays */
+  --gray-50: #fafafa;
+  --gray-100: #f4f4f5;
+  --gray-200: #e4e4e7;
+  --gray-300: #d4d4d8;
+  --gray-400: #a1a1aa;
+  --gray-500: #71717a;
+  --gray-600: #52525b;
+  --gray-700: #3f3f46;
+  --gray-800: #27272a;
+  --gray-900: #18181b;
+
+  /* Brand accent — vibrant indigo */
+  --accent-50: #eef2ff;
+  --accent-100: #e0e7ff;
+  --accent-200: #c7d2fe;
+  --accent-300: #a5b4fc;
+  --accent-400: #818cf8;
+  --accent-500: #6366f1;
+  --accent-600: #4f46e5;
+  --accent-700: #4338ca;
+  --accent-800: #3730a3;
+  --accent-900: #312e81;
+
+  /* Layout — Clean backgrounds */
+  --bg-base: #f8fafc;
+  --bg-elevated: #ffffff;
+  --bg-subtle: #f1f5f9;
+  --bg-muted: #e2e8f0;
+
+  /* Layout — Sidebar */
+  --sidebar-bg: #ffffff;
+  --sidebar-text: var(--gray-600);
+  --sidebar-active-bg: var(--accent-50);
+  --sidebar-active-text: var(--accent-700);
+  --sidebar-hover-bg: var(--gray-50);
+  --sidebar-border: var(--gray-200);
+
+  /* Layout — Content */
+  --content-bg: var(--bg-base);
+  --content-text: var(--gray-900);
+  --content-muted: var(--gray-500);
+  --content-subtle: var(--gray-400);
+
+  /* Cards — Clean with subtle shadows */
+  --card-bg: #ffffff;
+  --card-border: var(--gray-200);
+  --card-border-hover: var(--gray-300);
+  --card-shadow: 
+    0 1px 3px 0 rgba(0, 0, 0, 0.04),
+    0 1px 2px -1px rgba(0, 0, 0, 0.04);
+  --card-shadow-hover:
+    0 10px 15px -3px rgba(0, 0, 0, 0.08),
+    0 4px 6px -4px rgba(0, 0, 0, 0.04);
+  --card-shadow-lg:
+    0 20px 25px -5px rgba(0, 0, 0, 0.08),
+    0 8px 10px -6px rgba(0, 0, 0, 0.04);
+  --card-radius: 16px;
+
+  /* Semantic colors */
+  --color-success: #10b981;
+  --color-success-light: #d1fae5;
+  --color-success-dark: #059669;
+  
+  --color-danger: #ef4444;
+  --color-danger-light: #fee2e2;
+  --color-danger-dark: #dc2626;
+  
+  --color-warning: #f59e0b;
+  --color-warning-light: #fef3c7;
+  --color-warning-dark: #d97706;
+  
+  --color-info: #3b82f6;
+  --color-info-light: #dbeafe;
+  --color-info-dark: #2563eb;
+
+  /* Gradients — Soft and professional */
+  --gradient-brand: linear-gradient(135deg, var(--accent-500) 0%, var(--accent-600) 100%);
+  --gradient-brand-light: linear-gradient(135deg, var(--accent-50) 0%, var(--accent-100) 100%);
+  --gradient-success: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  --gradient-page: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+
+  /* Tables */
+  --table-header-bg: var(--gray-50);
+  --table-row-hover: var(--accent-50);
+  --table-row-stripe: var(--gray-50);
+  --table-border: var(--gray-200);
+
+  /* Inputs */
+  --input-bg: #ffffff;
+  --input-border: var(--gray-300);
+  --input-border-focus: var(--accent-500);
+  --input-placeholder: var(--gray-400);
+
+  /* Radius */
+  --radius-xs: 6px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
+
+  /* Typography */
+  --font-sans: var(--font-geist-sans), 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: var(--font-geist-mono), 'JetBrains Mono', ui-monospace, monospace;
+
+  /* Animations */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@theme inline {
+  --color-background: var(--content-bg);
+  --color-foreground: var(--content-text);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   BASE STYLES
+   ═══════════════════════════════════════════════════════════════ */
+
+html {
+  color-scheme: light;
+}
+
+body {
+  background: var(--bg-base);
+  color: var(--content-text);
+  font-family: var(--font-sans);
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Без горизонтального скролла body — основная защита от случайных overflow.
+     Если конкретный экран хочет скролл — выставляет на своём контейнере. */
+  overflow-x: hidden;
+  /* Safe-area для iOS (notch, dynamic island, нижний бар браузера). */
+  padding-left: env(safe-area-inset-left, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   MOBILE UTILITIES
+   ═══════════════════════════════════════════════════════════════ */
+
+/* dvh fallback для старых браузеров */
+.h-dvh { height: 100vh; height: 100dvh; }
+.min-h-dvh { min-height: 100vh; min-height: 100dvh; }
+.max-h-dvh { max-height: 100vh; max-height: 100dvh; }
+
+/* safe-area helpers — для bottom-input, FAB, sticky-bar, BottomNav */
+.safe-bottom { padding-bottom: env(safe-area-inset-bottom, 0px); }
+.safe-top { padding-top: env(safe-area-inset-top, 0px); }
+.mb-safe { margin-bottom: env(safe-area-inset-bottom, 0px); }
+.mt-safe { margin-top: env(safe-area-inset-top, 0px); }
+/* Алиасы pb-safe / pt-safe — совместимость с Tailwind-naming. */
+.pb-safe { padding-bottom: env(safe-area-inset-bottom, 0px); }
+.pt-safe { padding-top: env(safe-area-inset-top, 0px); }
+.pl-safe { padding-left: env(safe-area-inset-left, 0px); }
+.pr-safe { padding-right: env(safe-area-inset-right, 0px); }
+
+/* iOS Safari зумит экран при focus на input если font-size < 16px.
+   На мобиле принудительно 16px, на md+ возвращаем обычные 14px (form-density). */
+input:not([type='checkbox']):not([type='radio']):not([type='range']),
+select,
+textarea {
+  font-size: 16px;
+}
+@media (min-width: 768px) {
+  input:not([type='checkbox']):not([type='radio']):not([type='range']),
+  select,
+  textarea {
+    font-size: 14px;
+  }
+}
+
+/* Touch-targets: ассистенту-проверке проще видеть, что у тапаемых ≥ 44px высоты.
+   На mobile button и [role=button] получают min-height 44px по умолчанию,
+   но только если внутри не явно компактные классы (h-6 / h-7 / h-8). */
+@media (max-width: 767px) {
+  button:not(.h-6):not(.h-7):not(.h-8):not(.h-9):not(.h-10):not([data-compact]),
+  [role="button"]:not(.h-6):not(.h-7):not(.h-8):not(.h-9):not(.h-10):not([data-compact]) {
+    min-height: 44px;
+  }
+}
+
+/* Обёртка таблицы со скроллом по горизонтали (на десктопе её можно ставить
+   как no-op, мобиле обязательно). */
+.table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Selection */
+::selection {
+  background: var(--accent-200);
+  color: var(--accent-900);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SCROLLBAR
+   ═══════════════════════════════════════════════════════════════ */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gray-300);
+  border-radius: var(--radius-full);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gray-400);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   UTILITIES
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Gradient text */
+.text-gradient {
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Shimmer loading effect */
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 25%, rgba(255,255,255,0.8) 50%, transparent 75%);
+  transform: translateX(-100%);
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Card interactions */
+.card-hover {
+  transition: 
+    transform var(--transition-base),
+    box-shadow var(--transition-base),
+    border-color var(--transition-base);
+}
+
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--card-shadow-hover);
+  border-color: var(--card-border-hover);
+}
+
+/* KPI card glow on hover */
+.kpi-glow {
+  transition: 
+    transform var(--transition-base),
+    box-shadow var(--transition-base),
+    border-color var(--transition-base);
+}
+
+.kpi-glow:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--card-shadow-hover);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   FOCUS STATES
+   ═══════════════════════════════════════════════════════════════ */
+
+.focus-ring {
+  outline: none;
+}
+
+.focus-ring:focus-visible {
+  outline: 2px solid var(--accent-500);
+  outline-offset: 2px;
+}
+
+button:focus-visible,
+[role="button"]:focus-visible {
+  outline: 2px solid var(--accent-500);
+  outline-offset: 2px;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   DATA VISUALIZATION
+   ═══════════════════════════════════════════════════════════════ */
+
+.chart-1 { color: var(--accent-500); }
+.chart-2 { color: #14b8a6; }
+.chart-3 { color: #f59e0b; }
+.chart-4 { color: #ef4444; }
+.chart-5 { color: #8b5cf6; }
+.chart-6 { color: #06b6d4; }
+
+/* ═══════════════════════════════════════════════════════════════
+   HEATMAP
+   ═══════════════════════════════════════════════════════════════ */
+
+.heatmap-positive-1 { background: rgba(16, 185, 129, 0.1); }
+.heatmap-positive-2 { background: rgba(16, 185, 129, 0.2); }
+.heatmap-positive-3 { background: rgba(16, 185, 129, 0.3); }
+.heatmap-positive-4 { background: rgba(16, 185, 129, 0.4); }
+.heatmap-positive-5 { background: rgba(16, 185, 129, 0.5); }
+
+.heatmap-negative-1 { background: rgba(239, 68, 68, 0.1); }
+.heatmap-negative-2 { background: rgba(239, 68, 68, 0.2); }
+.heatmap-negative-3 { background: rgba(239, 68, 68, 0.3); }
+.heatmap-negative-4 { background: rgba(239, 68, 68, 0.4); }
+.heatmap-negative-5 { background: rgba(239, 68, 68, 0.5); }
+
+/* ═══════════════════════════════════════════════════════════════
+   STATUS INDICATORS
+   ═══════════════════════════════════════════════════════════════ */
+
+.status-online {
+  background: var(--color-success);
+}
+
+.status-offline {
+  background: var(--gray-400);
+}
+
+.status-warning {
+  background: var(--color-warning);
+}
+
+.status-error {
+  background: var(--color-danger);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   TABLE STYLES
+   ═══════════════════════════════════════════════════════════════ */
+
+.table-premium {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.table-premium th {
+  background: var(--table-header-bg);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.table-premium tbody tr {
+  transition: background-color var(--transition-fast);
+}
+
+.table-premium tbody tr:hover {
+  background: var(--table-row-hover);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   LOADING SKELETON
+   ═══════════════════════════════════════════════════════════════ */
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--gray-100) 0%,
+    var(--gray-200) 50%,
+    var(--gray-100) 100%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s ease-in-out infinite;
+}
+
+@keyframes skeleton-loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}

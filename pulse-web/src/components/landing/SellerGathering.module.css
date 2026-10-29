@@ -1,0 +1,52 @@
+.headline { max-width: 760px; font-size: clamp(38px, 4vw, 54px); line-height: 1.24; letter-spacing: -2px; font-weight: 650; margin: 0 0 24px; text-wrap: balance; }
+.phrase { display: inline-block; white-space: nowrap; margin-right: .14em; }
+.word { animation: resolve 1.15s both; animation-delay: calc(var(--word, 0) * .075s); }
+.slot { display: inline-block; position: relative; width: 1.04em; height: 1.04em; vertical-align: -.12em; margin: 0 .03em; }
+.smallSlot { width: 1.35em; height: 1.35em; vertical-align: -.3em; }
+.sourceArt, .targetArt { display: block; width: 100%; height: 100%; }
+.art { display: block; position: relative; overflow: hidden; width: 100%; height: 100%; border-radius: 24%; box-shadow: inset 0 0 0 1px #ffffff50, 0 8px 14px -8px #29104360; }
+.art::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, #ffffff50, transparent 55%); }
+.art svg { position: relative; display: block; width: 100%; height: 100%; }
+.sales { background: #F868B4; }
+.stock { background: #FFA85E; }
+.finance { background: #35D4CA; }
+.reviews { background: #FFDA66; }
+.ai { background: #A36AF0; }
+.scene { grid-area: scene; min-width: 0; position: relative; }
+.panel { padding: 22px 24px 18px; background: linear-gradient(125deg, #242445, #383064 70%, #493578); color: white; border-radius: 25px; box-shadow: 0 18px 32px -23px #58259a90; }
+.panelHeader { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding-bottom: 21px; }
+.panelBrand { display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 600; }
+.panelBrand > span { width: 28px; height: 28px; display: grid; place-items: center; background: #ffffff1a; border-radius: 8px; font: 21px/1 Georgia, serif; }
+.panelNote { color: #d2bce9; font-size: 12px; }
+.track { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; }
+.cell { min-width: 0; text-align: center; }
+.target { display: block; width: 100%; aspect-ratio: 1; border-radius: 24%; background: #ffffff08; outline: 1px dashed #ffffff40; outline-offset: -1px; }
+.cellLabel { display: block; margin-top: 12px; font-size: 12px; color: #efe3ff; }
+.panelCaption { margin: 18px 0 0; padding-top: 15px; border-top: 1px solid #ffffff20; color: #dccbea; font-size: 12px; line-height: 1.5; }
+.flightLayer { display: none; position: absolute; inset: 0; pointer-events: none; z-index: 4; }
+.flyingTile { position: absolute; top: 0; left: 0; display: block; width: 80px; height: 80px; transform-origin: top left; will-change: transform; }
+:global([data-flight-ready]) > .flightLayer { display: block; }
+:global([data-flight-ready='full']) .sourceArt { opacity: 0; }
+:global([data-flight-ready]) .targetArt { opacity: .14; filter: grayscale(1); }
+@keyframes resolve {
+  from { color: #6546b5; text-shadow: 0 0 13px #7969c870, 0 0 25px #22cfc840; filter: blur(2px); }
+  to { color: #24143e; text-shadow: 0 0 0 transparent; filter: blur(0); }
+}
+@media (max-width: 1100px) { .headline { font-size: 43px; } .panel { padding: 20px; } .track { gap: 10px; } }
+@media (max-width: 960px) { .headline { font-size: 36px; letter-spacing: -1.3px; } .panel { padding: 18px 15px; border-radius: 20px; } .track { gap: 7px; } .cellLabel { font-size: 10px; } .panelNote { display: none; } }
+@media (max-width: 760px) {
+  .headline { font-size: clamp(27px, 7.7vw, 34px); letter-spacing: -1.2px; line-height: 1.25; margin-bottom: 16px; }
+  .scene { padding-top: 18px; }
+  .panel { padding: 20px 16px; }
+  .panelHeader { padding-bottom: 19px; }
+  .panelNote { display: inline; }
+  .cellLabel { font-size: 10px; margin-top: 10px; }
+  .track { gap: 9px; }
+  .panelCaption { margin-top: 16px; font-size: 11px; }
+}
+@media (max-width: 360px) { .track { gap: 7px; } .panel { padding: 18px 13px; } }
+@media (prefers-reduced-motion: reduce) {
+  .word { animation: none; }
+  .flightLayer, :global([data-flight-ready]) > .flightLayer { display: none; }
+  :global([data-flight-ready]) .sourceArt, :global([data-flight-ready]) .targetArt { opacity: 1; filter: none; }
+}
