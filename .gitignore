@@ -1,0 +1,40 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+.next/
+out/
+tsc/
+*.tsbuildinfo
+
+# Environment & secrets
+.env
+.env.*
+!.env.example
+
+# Logs
+logs/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Storage & uploads
+pulse-api/storage/
+pulse-api/out/
+
+# Test output
+test-results/
+playwright-report/
+coverage/
+
+# Context docs (not code)
+_context/
